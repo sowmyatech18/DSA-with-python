@@ -55,7 +55,23 @@ class Linkedlist():
             print(curr.data)
             curr=curr.next
 
-    def insertatk(self):
+    def insertatk(self,k,x):
+        ni=Node(x)
+        #insert at 0th position
+        if k==0:
+            ni.next=self.head
+            self.head=ni
+            return
+            
+        curr=self.head
+        for i in range(k-1):
+            curr=curr.next
+        #if k out of index
+        if(curr==None):
+            print("invalid position")
+            return 
+        ni.next=curr.next
+        curr.next=ni
         
 l=Linkedlist()
 l.insertathead(10)
