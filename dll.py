@@ -27,4 +27,16 @@ class DoubleLinkedList:
             curr=curr.next
         curr.next=ni
         ni.prev=curr
+    def deleteathead(self):
+        #empty list
+        if(self.head==None):
+            return
+        #one element
+        if(self.head.next==None):
+            self.head=None
+            return
+        curr=self.head
+        self.head=curr.next
+        curr.next.prev=None
+        curr=None
         
