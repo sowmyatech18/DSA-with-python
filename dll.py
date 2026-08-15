@@ -17,4 +17,14 @@ class DoubleLinkedList:
         curr.prev=ni
         ni.next=curr
         self.head=ni
+    def insertattail(self,x):
+        ni=Node(x)
+        if(self.head==None):
+            self.head=ni
+            return
+        curr=self.head
+        while(curr.next):
+            curr=curr.next
+        curr.next=ni
+        ni.prev=curr
         
