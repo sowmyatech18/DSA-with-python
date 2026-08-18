@@ -26,6 +26,23 @@ def __init__(self,cap):
       return
     v=self.arr[self.front]
     return v
+    
+  def display(self):
+    if(self.front>self.rear):
+      print("queue empty")
+      return
+    for i in range(self.front,self.rear+1):
+      print(self.arr[i],end=" ")
+
+s=queueArray(4)
+s.enqueue(3)
+s.enqueue(8)
+s.enqueue(10)
+s.enqueue(1)
+print(s.dequeue())
+print(s.peek())
+print(s.arr)
+s.display()
 
 
     
