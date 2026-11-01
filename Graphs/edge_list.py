@@ -100,6 +100,34 @@ class EdgeListGraph:
       if vertex is not v:
         new_V.append(v)
    self.V=new_V
+  
+  def dfs(self,u,discovered=None):
+    if discovered is None:
+      discovered={u:None}
+    for e in self.incident_edges(u):  #O(m x n)
+      v=e.opposite(u)
+      if v not in discovered:
+        discovered[v]=e
+        self.dfs(v,discovered)
+    return discovered
+
+  def bfs(self,s):
+    discovered={s:None}
+    level=[s]                                              #The key difference                                                    
+    while len(level)>0:                                    #DFS: A → B → D → backtrack → C.
+      next_level=[]                                        #BFS: A → B → C → D.
+      for u in level:
+        for e in self.incident_edges(u):                  #O(mxn)
+          v=e.opposite(u)
+          if v not in discovered:
+            discovered[v]=e
+            next_level.append(v)
+      level=next_level
+    return discovered
+        
+
+
+        
 
       
   
