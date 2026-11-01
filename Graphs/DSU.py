@@ -14,11 +14,23 @@ class DSU:
         ry=self.find(y)
         if(rx==ry):
             return False
-        else if(self.rank[rx]<self.rank[ry]):
+        if(self.rank[rx]<self.rank[ry]):
             self.parent[rx]=ry
-        else if(self.rank[rx]>self.rank[ry]):
+        elif(self.rank[rx]>self.rank[ry]):
             self.parent[ry]=rx
         else:
             self.parent[ry]=rx
             self.rank[rx]+=1
         return True
+dsu=DSU()
+dsu.make_set(0)
+dsu.make_set(1)
+dsu.make_set(2)
+dsu.make_set(3)
+
+dsu.union(0, 1)
+dsu.union(2, 3)
+dsu.union(0, 2)
+
+print(dsu.parent)
+print(dsu.rank)
