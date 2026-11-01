@@ -1,4 +1,4 @@
-class min_heap:
+class MinHeap:
   def __init__(self):
     self.data=[]
   def __len__(self):
