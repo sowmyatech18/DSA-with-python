@@ -40,4 +40,66 @@ class EdgeListGraph:
     return len(self.E)
   def edges(self):
     return self.E
+
+  def get_edge(self,u,v):
+    for e in self.E:
+      if self.origin is u and self.destination is v:
+        return e
+      if not self.directed and self.origin is v and self.destination is u:
+        return e
+    return None 
+    
+  def degree(self,v,outgoing=True):
+    count=0
+    for e in self.E:
+      if self.directed:
+        if (outgoing and self.origin is v) or (not outgoing and self.destination is v)
+          count+=1
+      elif (self.origin is v) or (self.destination is v):
+        count+=1
+    return count
+
+  def incident_edges(self,v,outgoing=True):
+    result=[]
+    for e in self.E:
+      if self.directed:
+        if (outgoing and self.origin is v) or (not outgoing and self.destination is v):
+          result.append(e)
+      elif (self.origin is v) or (self.destination is v):
+          result.append(e)
+    return result
+
+  def insert_vertex(self,x=None):
+    v=self.Vertex(x)
+    self.V.append(v)
+    return v
+
+  def insert_edge(self,u,v,x=None):
+    if self.get_edge(u,v) is not None:
+      raise ValueError("u and v are aldready adjecent")
+    e=self.Edge(u,v,x)
+    self.E.append(e)
+    return e
+
+  def remove_edge(self,e):      #time complexity: O(m)
+    new_E=[]
+    for edge in self.E:
+      if edge is not e:
+        new_E.append(edge)
+    self.E=new_E
+
+  def remove_vertex(self,v):    #time complexity: O(m+n)
+    new_E=[]
+    for edge in self.E:
+      if (self.origin is not v) and (self.destination is not v):
+        new_E.append(edge)
+    self.E=new_E
+
+    new_V=[]
+    for vertex in self.V:
+      if vertex is not v:
+        new_V.append(v)
+   self.V=new_V
+
+      
   
