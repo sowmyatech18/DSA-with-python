@@ -14,7 +14,7 @@ class DSU:
         ry=self.find(y)
         if(rx==ry):
             return False
-        if(self.rank[rx]<self.rank[ry]):
+        if(self.rank[rx]<self.rank[ry]):  #union by rank
             self.parent[rx]=ry
         elif(self.rank[rx]>self.rank[ry]):
             self.parent[ry]=rx
