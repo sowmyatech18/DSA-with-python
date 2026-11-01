@@ -41,7 +41,7 @@ class EdgeListGraph:
   def edges(self):
     return self.E
 
-  def get_edge(self,u,v):
+  def get_edge(self,u,v):    #O(m)
     for e in self.E:
       if self.origin is u and self.destination is v:
         return e
@@ -49,7 +49,7 @@ class EdgeListGraph:
         return e
     return None 
     
-  def degree(self,v,outgoing=True):
+  def degree(self,v,outgoing=True):    #O(m)
     count=0
     for e in self.E:
       if self.directed:
@@ -59,7 +59,7 @@ class EdgeListGraph:
         count+=1
     return count
 
-  def incident_edges(self,v,outgoing=True):
+  def incident_edges(self,v,outgoing=True):    #O(m)
     result=[]
     for e in self.E:
       if self.directed:
@@ -69,12 +69,12 @@ class EdgeListGraph:
           result.append(e)
     return result
 
-  def insert_vertex(self,x=None):
+  def insert_vertex(self,x=None):    #O(1)
     v=self.Vertex(x)
     self.V.append(v)
     return v
 
-  def insert_edge(self,u,v,x=None):
+  def insert_edge(self,u,v,x=None):    #O(1)
     if self.get_edge(u,v) is not None:
       raise ValueError("u and v are aldready adjecent")
     e=self.Edge(u,v,x)
