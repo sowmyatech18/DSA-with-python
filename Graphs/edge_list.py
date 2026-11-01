@@ -25,4 +25,19 @@ class EdgeListGraph:
     def __hash__(self):
       return hash(id(self))
 
+  def __init__(self,directed=False):
+    self.directed=directed
+    self.V=[]
+    self.E=[]
+
+  def is__directed(self):
+    return self.directed
+  def vertex_count(self):
+    return len(self.V)
+  def vertices(self):
+    return self.V
+  def edge_count(self):
+    return len(self.E)
+  def edges(self):
+    return self.E
   
