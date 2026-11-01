@@ -3,7 +3,7 @@ class MinHeap:
     self.data=[]
   def __len__(self):
     return len(self.data)
-  def is_empty:
+  def is_empty(self):
     return len(self.data)==0
   def push(self,key,value):
     self.data.append((key,value))
@@ -11,7 +11,7 @@ class MinHeap:
     while j>0:
       p=(j-1)//2
       if(self.data[j][0]<self.data[p][0]):                              #heapify up
-        self.data[j][0],self.data[p][0]=self.data[p][0],self.data[j][0]
+        self.data[j],self.data[p]=self.data[p],self.data[j]
         j=p
       else:
         break
@@ -32,11 +32,12 @@ class MinHeap:
       small=j
       left=2*j+1
       right=2*j+2
-      if left>n and self.data[left][0]<self.data[small][0]: #heapify down
+      if left<n and self.data[left][0]<self.data[small][0]: #heapify down
           small=left
-      if right>n and self.data[right][0]<self.data[small][0]:
+      if right<n and self.data[right][0]<self.data[small][0]:
         small=right
       if small==j:
         break
       self.data[j],self.data[small]=self.data[small],self.data[j]
+      j=small
     return item
