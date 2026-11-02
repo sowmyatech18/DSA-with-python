@@ -39,7 +39,35 @@ class AdjacencyMatrix:
     return self.V
   def edge_count(self):
     return self.m
+    
+  def edges(self):
+    result=[]
+    n=len(self.V)
+    for i in range n:
+      start=0 if self.directed else i
+      for j in range(start,n):
+        if self.A[i][j] is not None:
+          result.append(self.A[i][j])
+    return result
 
+  def get_edge(self,u,v):
+    return A[u.index][v.index]
+
+  def degree(self,v,outgoing=True):
+    count=0
+    for i in range(len(self.V)):
+      e=self.A[v.index][i] if outgoing else self.A[i][v.index]
+      if e is not None:
+        count+=1
+    return count
+  def incident_edges(self,v,outgoing=True):
+    result=[]
+    for i in range(len(self.V)):
+      e=self.A[v.index][i] if outgoing else self.A[i][v.index]
+      if e is not None:
+        reuslt.append(None)
+    return result
+  
   def dfs(self,u,discovered=None):
     if discovered is None:
       discovered={u:None}
