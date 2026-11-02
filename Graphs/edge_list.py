@@ -124,7 +124,23 @@ class EdgeListGraph:
             next_level.append(v)
       level=next_level
     return discovered
-        
+
+  def kruskal(self):
+    heap=MinHeap()
+    for e in self.E:                    #mO(logm)
+      heap.push(e.element(),e)
+      dsu=DSU()
+    for v in self.V:
+      dsu.make_set(v)
+    tree=[]
+    while len(tree)<len(self.V)-1 and not heap.is_empty():
+      weight,e=heap.pop_min()
+      u,v=e.endpoints()
+      if dsu.union(u,v):
+        tree.append(e)
+    return tree
+
+  
 
 
         
