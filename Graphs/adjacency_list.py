@@ -66,6 +66,8 @@ class AdjacencyList:
     self.outgoing[u].append(e)
     self.incoming[v].append(e)
     return e 
+
+  
     
 
     
