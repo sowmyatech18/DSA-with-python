@@ -91,14 +91,14 @@ class EdgeListGraph:
   def remove_vertex(self,v):    #time complexity: O(m+n)
     new_E=[]
     for edge in self.E:
-      if (self.origin is not v) and (self.destination is not v):
+      if (edge.origin is not v) and (edge.destination is not v):
         new_E.append(edge)
     self.E=new_E
 
     new_V=[]
     for vertex in self.V:
       if vertex is not v:
-        new_V.append(v)
+        new_V.append(vertex)
    self.V=new_V
   
   def dfs(self,u,discovered=None):
