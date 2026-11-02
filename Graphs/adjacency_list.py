@@ -66,6 +66,78 @@ class AdjacencyList:
     self.outgoing[u].append(e)
     self.incoming[v].append(e)
     return e 
+    
+  def remove_edge(self,e):   #O(deg(u) +deg(v) +m)
+    u,v=e.endpoints()
+
+    new_out=[]
+    for edge in self.outgoing[u]:
+      if edge is not e:
+        new_out.append(edge)
+    self.outgoing[u]=new_out
+    new_in=[]
+    for edge in self.incoming[v]:
+      if edge is not e:
+        new_in.append(edge)
+    self.incoming[v]=e
+    new_E=[]
+    for edge in self.E:
+      if edge is not e:
+        new_E.append(edge)
+    self.E=new_E
+
+  def remove_vertex(self,v):    #O(m+n)
+    new_E=[]
+    for e in self.E:
+      if e.origin is not v and e.destination is not v:
+        new_E.append(e)
+    self.E=new_E
+
+    new_out={}
+    for vertex in self.outgoing:
+      if vertex is not v:
+        new_out[vertex]=[]
+        for e in self.outgoing[vertex]:
+          if e.origin is not v and e.destination is not v:
+            new_out[vertex].append(e)
+    self.outgoing=new_out
+
+    if self.directed:
+      new_in={}
+      for vertex in self.incoming:
+        if vertex is not v:
+          new_in[vertex]=[]
+          for e in self.incoming[vertex]:
+            if e.origin is not v and e.destination is not v:
+              new_in[vertex].append(e)
+      self.incoming=new_in
+
+  def dfs(self,u,discovered=None):    #O(n+m)
+    if discovered is None:
+      discovered={u:None}
+    for e in self.incident_edges(u):
+      v=e.opposite(u)
+      if v not in discovered:
+        discovered[v]=e
+        self.dfs(v,discovered)
+    return discovered
+
+  def bfs(self,s):        #O(n+m)
+    discovered={s:None}
+    level=[s]
+    while len(level)>0:
+      next_level=[]
+      for e in self.incident_edges(s):
+        v=e.opposite(s)
+        if v not in discovered:
+          discovered[v]=e
+          next_level.append(v)
+      level=next_level
+    return discovered
+    
+            
+        
+    
 
   
     
