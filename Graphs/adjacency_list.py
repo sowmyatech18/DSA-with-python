@@ -134,8 +134,62 @@ class AdjacencyList:
           next_level.append(v)
       level=next_level
     return discovered
+
+def prim_mst(self,s):
+  d={}
+  connect={}
+  pq=PriorityQueue()
+  loactors={}
+  for v in self.vertcices():
+    d[v]=0 if v is s else float('inf')
+      locatosr=pq.add(d[v],v)
+  tree=[]
+  while is not pq.is_empty():
+    key,u=pq.remove_min()
+    new_loc={}
+    for vertex in locators:
+      if vertex is not u:
+        new_loc[vertex]=locators[vertex]
+    locator=new_loc
+    if u in connect:
+      tree.append(connect[u])
+    for e in self.incident_edges(u):
+      v=e.opposite(u)
+      if v in locators and e.element()<d[v]:
+        d[v]=e.element()
+        connect[v]=e
+        pq.update(locators[v],d[v],v)
+  return tree
+
+def dijkstra(self,s):
+    dist={}
+    parent={s:None}
+    pq=PriorityQueue()
+    locators={}
+    for v in self.vertices:
+      dist[v]=0 if v is s else float('inf')
+        locators=pq.add(dist[v],v)
+    while is not pq.is_empty():
+      key,u=pq.remove_min()
+      new_loc={}
+      for vertex in locators:
+        if vertex is not u:
+          new_loc[vertex]=locators[vertex]
+      locators=new_loc
+      for e in self.incident_edges(u):
+        v=opposite(u)
+        if v in locators and dist[u]+ e.element()<dist[v]:
+          dist[v]=dist[u]+e.element()
+          parent[v]=e
+          pq.update(locators[v],dict[v],v)
+    return dist,parent
+  
+          
     
-            
+    
+    
+    
+  
         
     
 
