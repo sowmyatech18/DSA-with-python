@@ -140,6 +140,30 @@ class EdgeListGraph:
         tree.append(e)
     return tree
 
+  def boruvka(self):                # m Olog(n) #root->cheapest outgoing edge
+    dsu=DSU()
+    for v in self.V:
+      dsu.make_set(v)
+    tree=[]
+    while True:
+      cheapest={}
+      for i in (len(self.E)):
+        e=self.(E[i])
+        ru=dsu.find(e.origin)
+        rv=dsu.find(e.destination)
+        if (ru==rv):
+          continue
+        for r in (ru,rv):
+          if r not in cheapest or (e.element(),i)<cheapest[r][0]:
+            cheapest=((e.element(),i),e)
+      if(len(cheapest)==0):
+        break
+      for key,e in cheapest.values():
+        if dsu.union(e.origin,e.destination):
+          tree.append(e)
+    return tree
+            
+
   
 
 
